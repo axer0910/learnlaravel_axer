@@ -74,7 +74,7 @@ class ArticleController extends Controller {
 	 */
 	public function edit($id)
 	{
-        return view('admin.articles.edit')->with('articleComments',Article::find($id));
+        return view('admin.articles.edit')->with('article',Article::find($id));
 	}
 
 	/**
@@ -83,9 +83,23 @@ class ArticleController extends Controller {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function update($id)
+	public function update(Request $request,$id)
 	{
-		//
+        $this->validate($request ,[
+            'title' => 'required|unique:articles|max:255',
+            'body' => 'required'
+        ]);
+
+		$article = Article::find($id);
+		$article->title = Input::get('title');
+        $article->body = Input::get('body');
+        $article->image = Input::get('image');
+        if ($article->save()){
+            return Redirect::to('admin');
+        }
+        else{
+            return Redirect::back()->withInput()->withError('修改失败！');
+        }
 	}
 
 	/**

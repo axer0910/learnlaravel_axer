@@ -20,12 +20,14 @@
                             </div>
                         @endif
 
-                        <form action="{{ URL('admin/article_comments/'.$articleComments->id) }}" method="POST">
+                        <form action="{{ URL('admin/article/'.$article->id) }}" method="POST">
                             <input name="_method" type="hidden" value="PUT">
                             <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                            <input type="text" name="title" class="form-control" required="required" value="{{ $articleComments->title }}">
+                            <input type="text" name="title" class="form-control" required="required" value="{{ $article->title }}">
                             <br>
-                            <textarea name="body" rows="10" class="form-control" required="required">{{ $articleComments->body }}</textarea>
+                            <textarea name="body" rows="10" class="form-control" required="required">{{ $article->body }}</textarea>
+                            <br>
+                            <input type="text" name="image" class="form-control" value="{{ $article->image }}">
                             <br>
                             <button class="btn btn-lg btn-info">编辑 Page</button>
                         </form>

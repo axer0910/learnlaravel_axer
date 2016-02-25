@@ -21,6 +21,7 @@ Route::controllers([
 ]);
 
 Route::get('pages/{id}', 'PagesController@show');
+Route::get('articles/{id}', 'ArticlesController@show');
 
 Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'middleware' => 'auth'], function()
 {

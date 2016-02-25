@@ -1,5 +1,6 @@
 <?php namespace App\Http\Controllers;
 use App\Page;
+use App\Article;
 class HomeController extends Controller {
 
 	/*
@@ -30,7 +31,9 @@ class HomeController extends Controller {
 	 */
 	public function index()
 	{
-		return view('home')->withPages(Page::all());
+        $v[0] = Page::all();
+        $v[1] = Article::all();
+		return view('home')->withPages($v);
 		//return view('home');
 	}
 

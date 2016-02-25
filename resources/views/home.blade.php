@@ -8,7 +8,7 @@
 	<hr>
 	<div id="content">
 		<ul>
-			@foreach ($pages as $page)
+			@foreach ($pages[0] as $page)
 				<li style="margin: 50px 0;">
 					<div class="title">
 						<a href="{{ URL('pages/'.$page->id) }}">
@@ -20,6 +20,19 @@
 					</div>
 				</li>
 			@endforeach
+            <hr/>
+                @foreach ($pages[1] as $page)
+                    <li style="margin: 50px 0;">
+                        <div class="title">
+                            <a href="{{ URL('articles/'.$page->id) }}">
+                                <h4>{{ $page->title }}</h4>
+                            </a>
+                        </div>
+                        <div class="body">
+                            <p>{{ $page->body }}</p>
+                        </div>
+                    </li>
+                @endforeach
 		</ul>
 	</div>
 @endsection
