@@ -28,6 +28,7 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'middleware' => 'auth
 	Route::resource('pages', 'PagesController');
     Route::resource('comments', 'CommentsController');
     Route::resource('article_comments','ArticleCommentsController');
+    Route::resource('article','ArticleController');
 });
 
 Route::post('comment/store', 'CommentsController@store');

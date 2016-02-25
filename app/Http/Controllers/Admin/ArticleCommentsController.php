@@ -15,20 +15,20 @@ class ArticleCommentsController extends Controller {
 	 */
 	public function index()
 	{
-		return view('admin.articles.index');
+		//return view('admin.articles.index');
 	}
 
 	public function edit($id)
 	{
-		return view('admin.articles.edit')->with('articleComments',Article::find($id));
+		//return view('admin.articles.edit')->with('articleComments',Article::find($id));
 	}
 
 	public function destroy($id)
 	{
-		$page = Article::find($id);
+		/*$page = Article::find($id);
 		$page->delete();
 
-		return Redirect::to('admin');
+		return Redirect::to('admin');*/
 	}
 
 }

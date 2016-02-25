@@ -33,7 +33,7 @@ class PagesController extends Controller {
             'body' => 'required',
         ]);
 
-        $page = new Page;
+        $page = new Page();
         $page->title = Input::get('title');
         $page->body = Input::get('body');
         $page->user_id = 1;//Auth::user()->id;

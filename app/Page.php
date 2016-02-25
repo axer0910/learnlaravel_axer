@@ -8,7 +8,4 @@ class Page extends Model {
     {
         return $this->hasMany('App\Comment', 'page_id', 'id');
     }
-
-
-
 }
