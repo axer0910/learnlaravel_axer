@@ -4,6 +4,7 @@
     <h4>
         <a href="/">⬅️返回首页</a>
     </h4>
+    <h4>{{$article->id}}</h4>
 
     <h1 style="text-align: center; margin-top: 50px;">{{ $article->title }}</h1>
     <hr>
@@ -29,9 +30,9 @@
         @endif
 
         <div id="new">
-            <form action="{{ URL('comment/store') }}" method="POST">
+            <form action="{{ URL('comment/article_store') }}" method="POST">
                 <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                <input type="hidden" name="page_id" value="{{ $article->id }}">
+                <input type="hidden" name="article_id" value="{{ $article->id }}">
                 <div class="form-group">
                     <label>Nickname</label>
                     <input type="text" name="nickname" class="form-control" style="width: 300px;" required="required">
@@ -59,6 +60,16 @@
                 textArea.innerHTML = '@'+nickname+' ';
             }
         </script>
-
+        <div class="comments">
+            @foreach($article->hasManyComments as $comment)
+            <div class="one" style = "margin-top:100px;">
+                <h3>{{$comment->nickname}}</h3>
+                <h4>{{$comment->updated_at}}</h4>
+            </div>
+                <p>
+                {{$comment->content}}
+                </p>
+            @endforeach
+        </div>
     </div>
 @endsection

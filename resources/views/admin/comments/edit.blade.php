@@ -20,20 +20,24 @@
                             </div>
                         @endif
 
-                        <form action="{{ URL('admin/comments/'.$comment->id) }}" method="POST">
+                        <form action="{{ URL('admin/comments/'.$comment['type'].'/type/'.$comment['content']->id) }}" method="POST">
                             <input name="_method" type="hidden" value="PUT">
                             <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                            <input type="hidden" name="page_id" value="{{ $comment->page_id }}">
-                            Nickname: <input type="text" name="nickname" class="form-control" required="required" value="{{ $comment->nickname }}">
+                            @if ($comment['type'] == 'page')
+                            <input type="hidden" name="page_id" value="{{$comment['content']->page_id}}">
+                            @elseif($comment['type'] == 'article')
+                                <input type="hidden" name="article_id" value="{{$comment['content']->article_id}}">
+                            @endif
+                            Nickname: <input type="text" name="nickname" class="form-control" required="required" value="{{ $comment['content']->nickname }}">
                             <br>
                             Email:
-                            <input type="text" name="email" class="form-control" required="required" value="{{ $comment->email }}">
+                            <input type="text" name="email" class="form-control" required="required" value="{{ $comment['content']->email }}">
                             <br>
                             Website:
-                            <input type="text" name="website" class="form-control" required="required" value="{{ $comment->website }}">
+                            <input type="text" name="website" class="form-control" required="required" value="{{ $comment['content']->website }}">
                             <br>
                             Content:
-                            <textarea name="content" rows="10" class="form-control" required="required">{{ $comment->content }}</textarea>
+                            <textarea name="content" rows="10" class="form-control" required="required">{{ $comment['content']->content }}</textarea>
                             <br>
                             <button class="btn btn-lg btn-info">提交修改</button>
                         </form>

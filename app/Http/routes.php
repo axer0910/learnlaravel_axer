@@ -28,8 +28,11 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'middleware' => 'auth
 	Route::get('/', 'AdminHomeController@index');
 	Route::resource('pages', 'PagesController');
     Route::resource('comments', 'CommentsController');
+    Route::resource('comments.type', 'CommentsController');
     Route::resource('article_comments','ArticleCommentsController');
     Route::resource('article','ArticleController');
+    Route::get('comments/edit/{type}/{id}','CommentsController@editComments');
 });
 
-Route::post('comment/store', 'CommentsController@store');
+Route::post('comment/store', 'CommentsController@storePageComment');
+Route::resource('comment/article_store','CommentsController');

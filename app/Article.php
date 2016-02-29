@@ -4,5 +4,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Article extends Model {
 
-    //protected $fillable = ['nickname', 'email', 'website', 'content', 'page_id'];
+    public function hasManyComments()
+    {
+        return $this->hasMany('App\Article_Comment','article_id','id');
+    }
 }
